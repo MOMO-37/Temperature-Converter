@@ -45,8 +45,10 @@ fn main() {
 
         let temp: f32;
         loop {
-            let aux = deg_str(&deg_c);
-            println!("\nEnter a temperature in {aux}.");
+            println!(
+                "\nEnter a temperature in {}.",
+                deg_str(&deg_c)
+            );
             let mut input = String::new();
             io::stdin()
                 .read_line(&mut input)
@@ -61,7 +63,6 @@ fn main() {
                     continue;
                 },
             };
-
             break;
         }
 
@@ -70,16 +71,19 @@ fn main() {
             false => f_to_c(&temp),
         };
 
-        let deg_from = deg_str(&deg_c);
-        let deg_to = deg_str(&!deg_c);
-        println!("\n{temp}{deg_from} = {temp_new}{deg_to}");
+        println!(
+            "\n{}{} = {}{}",
+            temp,
+            deg_str(&deg_c),
+            temp_new,
+            deg_str(&!deg_c)
+        );
 
         println!("\nWould you like to perform another conversion?\n1. Yes\n2. No");
         let mut input = String::new();
         io::stdin()
             .read_line(&mut input)
-            .expect("Readline error.");
-        
+            .expect("Readline error."); 
         match input.trim().parse() {
             Ok(num) => {
                 match num {
